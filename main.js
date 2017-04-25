@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, WebView } from 'react-native';
 class App extends React.Component {
   render() {
     return (
-      <WebView source={{ uri: 'https://google.com' }} />
+      <WebView source={{ uri: 'https://kevinold.github.io/swipe-scrollview-of-webviews/web/one.html' }} />
     );
   }
 }
