@@ -11,9 +11,9 @@ export default class ScrollReader extends React.Component {
 
 		this.state = {
 			dataSource: [
+        { title: 'Eighteen hundred fifty' },
         { title: 'One' },
-        { title: 'Two' },
-        { title: 'Three' }
+        { title: 'Two' }
       ],
 			scrollTimes: 2
 		};
@@ -23,17 +23,22 @@ export default class ScrollReader extends React.Component {
 		this.loadMore = this.loadMore.bind(this);
 	}
 
-  loadMore () {
+  componentDidMount() {
+		// Attempt to keep "center" element in array as focused "screen" in the horizontal list view
+		this.scrollView.scrollTo({ x: width, y: 0, animated: false });
+	}
+
+  loadPrev () {
     this.setState({
 			dataSource: [
-        { title: 'Two' },
-        { title: 'Three' },
-        { title: 'Four' }
+        { title: 'Eighteen hundred fifty' },
+        { title: 'One' },
+        { title: 'Two' }
       ],
     });
   }
 
-  loadPrev () {
+  loadMore () {
     this.setState({
 			dataSource: [
         { title: 'One' },
@@ -42,6 +47,7 @@ export default class ScrollReader extends React.Component {
       ],
     });
   }
+
 
 	handleScroll (event) {
 		//const x = event.nativeEvent.contentOffset.x;
@@ -97,7 +103,8 @@ export default class ScrollReader extends React.Component {
         horizontal={true}
         onScroll={this.handleScroll}
         scrollEventThrottle={16}
-        contentOffset={{ x: width, y: 0 }}
+        // Electing to scrollTo in componentDidMount and after setState since it runs each time content is loaded
+        //contentOffset={{ x: width, y: 0 }}
       >
       {
 				this.state.dataSource
